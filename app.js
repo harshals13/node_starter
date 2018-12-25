@@ -23,7 +23,7 @@ var server = http.createServer(function(req, res){
     var method = req.method.toLowerCase();
 
     // getting the payload, if any
-    var decoder = new StringDecoder('utf-8');
+    var decoder = new stringDecoder('utf-8');
     var buffer = '';
     req.on('data', function(data){
         buffer +=decoder.write(data);
@@ -60,25 +60,23 @@ var server = http.createServer(function(req, res){
 
     // Log the request path
     console.log('Returning this response', statusCode, payloadString);
-
-    //
     });
-    });
+  });
 });
 
 
 //Making the server lissten on port 1326
-server.listen(1326, function(){
-    console.log("the server is listening");
+server.listen(config.port, function(){
+    console.log("The server is listening on port " + config.port + " in " + config.envName + " mode ");
 });
 
 // Defining the handler
 var handlers = {};
 
 //Sample handler
-handlers.sample = function(data, callback){
+handlers.hello = function(data, callback){
     // Callback a http status code, and a payload object
-    callback(406, {'name' : 'sample handler'})
+    callback(200, {'message' : 'Hello! Welcome to the Node application'})
 };
 
 // Not found handler
@@ -88,5 +86,5 @@ handlers.notFound = function(data, callback){
 
 // Defining a router
 var router ={
-    'sample' : handlers.sample
+    'hello' : handlers.hello
 }
