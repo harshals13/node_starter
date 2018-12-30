@@ -2,6 +2,13 @@ var url = require('url');
 var http = require('http');
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
+var fs = require('fs');
+var _data = require('./lib/data');
+
+//Testing
+_data.read('test', 'newFile1', function(err, data){
+    console.log('this was the error', err, ' and this was the data ', data);
+});
 
 // Create and starting server
 
@@ -76,15 +83,15 @@ var handlers = {};
 //Sample handler
 handlers.hello = function(data, callback){
     // Callback a http status code, and a payload object
-    callback(200, {'message' : 'Hello! Welcome to the Node application'})
+    callback(200, {'message' : 'Hello! Welcome to the Node application'});
 };
 
 // Not found handler
 handlers.notFound = function(data, callback){
-    callback(404)
+    callback(404);
 };
 
 // Defining a router
 var router ={
     'hello' : handlers.hello
-}
+};
