@@ -7,13 +7,15 @@ var environments = {};
 // Development (default) environments
 environments.development = {
     'port' : 9000,
-    'envName' : 'development'
+    'envName' : 'development',
+    'hashingSecret': 'thisIsASecret'
 };
 
 // Production environment
 environments.production = {
     'port' : 2000,
-    'envName' : 'production'
+    'envName' : 'production',
+    'hashingSecret' : 'thisIsAlsoASecret'
 };
 
 // Checking for the environment that was passed as a command line argument

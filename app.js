@@ -3,6 +3,7 @@ var http = require('http');
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
 var fs = require('fs');
+var handlers = require('./lib/handlers');
 
 // Create and starting server
 
@@ -71,21 +72,9 @@ server.listen(config.port, function(){
     console.log("The server is listening on port " + config.port + " in " + config.envName + " mode ");
 });
 
-// Defining the handler
-var handlers = {};
-
-//Sample handler
-handlers.hello = function(data, callback){
-    // Callback a http status code, and a payload object
-    callback(200, {'message' : 'Hello! Welcome to the Node application'});
-};
-
-// Not found handler
-handlers.notFound = function(data, callback){
-    callback(404);
-};
 
 // Defining a router
-var router ={
-    'hello' : handlers.hello
+var router = {
+    'ping' : handlers.ping,
+    'users': handlers.users
 };
