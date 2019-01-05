@@ -3,12 +3,6 @@ var http = require('http');
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
 var fs = require('fs');
-var _data = require('./lib/data');
-
-//Testing
-_data.read('test', 'newFile1', function(err, data){
-    console.log('this was the error', err, ' and this was the data ', data);
-});
 
 // Create and starting server
 
