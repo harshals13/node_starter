@@ -1,9 +1,11 @@
 var url = require('url');
 var http = require('http');
+var https = require('https');
 var stringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
 var fs = require('fs');
 var handlers = require('./lib/handlers');
+var helpers = require('./lib/helpers');
 
 // Create and starting server
 
@@ -42,7 +44,7 @@ var server = http.createServer(function(req, res){
         'queryStringObject' : queryString,
         'method': method,
         'headers': header,
-        'payload': buffer
+        'payload': helpers.parseJsonToObject(buffer)
     };
 
     // Route the request to the handler specified in the router
